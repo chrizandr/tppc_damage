@@ -1,4 +1,29 @@
-function requriedLevel(night, mytpe, othertype, mypoke, otherpoke, myitem, otheritem) {
+var attack_mon = {
+    name: "Arceus (Fighting)",
+    type: "Fighting",
+    hp: 120,
+    attack: 120,
+    defence: 120,
+    sattack: 120,
+    sdefense: 120,
+    speed: 120,
+    color: "Normal"
+}
+
+var attack_mon = {
+    name: "Arceus (Fighting)",
+    type: "Fighting",
+    hp: 120,
+    attack: 120,
+    defence: 120,
+    sattack: 120,
+    sdefense: 120,
+    speed: 120,
+    color: "Normal"
+}
+
+
+function requriedLevel(night, attack_mon, defence_mon, attack_mon_item, defence_mon_item, otheritem) {
   var night = false; // true/false.
 
   // defending pokémon

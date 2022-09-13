@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://getbootstrap.com/docs/4.0/examples/blog/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./template_files/528101.png">
+
+    <title>TPPC Damage Calculator</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="./template_files/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./template_files/css" rel="stylesheet">
+    <link href="./template_files/blog.css" rel="stylesheet">
+
+    <!-- Load data -->
+    <script type="text/javascript" src="poke_data.json"></script>
+    <script type="text/javascript" src="move_data.json"></script>
+    <script type="text/javascript" src="weakness.json"></script>
+
+    <script>
+        function load() {
+            load_pokes_list();
+            load_moves_list();
+        }
+
+        function load_pokes_list() {
+            for (var key in pokelist) {
+                const poke1 = document.createElement('option');
+                poke1.innerHTML = key;
+                document.querySelector('#attack_poke_name').appendChild(poke1);
+                const poke2 = document.createElement('option');
+                poke2.innerHTML = key;
+                document.querySelector('#defence_poke_name').appendChild(poke2);
+            }
+        }
+
+        function load_moves_list() {
+            for (var key in moves) {
+                const move = document.createElement('option');
+                move.innerHTML = key;
+                document.querySelector('#attack_poke_move').appendChild(move);
+            }
+        }
+    </script>
+    <style>
+        .icon {
+            background: url('./template_files/528101.png');
+            height: 20px;
+            width: 20px;
+            display: block;
+          /* Other styles here */
+        }
+        h4 {text-align: center;}
+        p {text-align: center;}
+
+    </style>
+  </head>
+
+  <body onload="load()">
+
+    <div class="container">
+      <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col text-center">
+            <span class='icon'></span>
+            <img src="./template_files/528101.png" class="rounded float-left" alt="..." width="42" height="42">
+            <img src="./template_files/528101.png" class="rounded float-right" alt="..." width="42" height="42">
+            <a class="blog-header-logo text-dark" href="#">TPPC Damage Calculator</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="nav-scroller py-1 mb-2">
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 box-shadow">
+            <div class="card-body d-flex flex-column align-items-start">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <strong class="d-inline-block mb-3 text-success">Attacking Pokemon</strong>
+
+                            <div class="dropdown">
+                                <label for="attack_poke_name">Choose Pokemon:</label>
+                                <select class="form-control" id="attack_poke_name">
+
+                                </select>
+                            </div>
+                            <br>
+
+                            <div class="dropdown">
+                                <label for="attack_poke_move">Attack Move:</label>
+                                <select class="form-control" id="attack_poke_move">
+
+                                </select>
+                            </div>
+                            <br>
+
+                            <div class="dropdown">
+                                <label for="attack_poke_item">Attached Item:</label>
+                                <select class="form-control" id="attack_poke_item">
+                                    <option>None</option>
+                                    <option>Elemental Stone</option>
+                                    <option>Life Orb</option>
+                                    <option>Power Boost</option>
+                                </select>
+                            </div>
+                            <br>
+
+                            <div class="dropdown">
+                                <label for="attack_poke_type">Pokemon Type:</label> <br>
+                                <input type="radio" id="normal" name="attack_poke_type" value="normal" checked="checked">
+                                <label for="age1">Normal</label>&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="shiny" name="attack_poke_type" value="shiny">
+                                <label for="age2">Shiny</label>&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="dark" name="attack_poke_type" value="dark">
+                                <label for="age3">Dark</label>&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="golden" name="attack_poke_type" value="golden">
+                                <label for="age3">Golden</label>&nbsp;&nbsp;&nbsp;
+                            </div>
+                            <br>
+                            <div class="dropdown">
+                                <input type="checkbox" id="nighttime" name="nighttime" value="night">
+                                <label for="nighttime">TPPC Night Time</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-4 box-shadow">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <strong class="d-inline-block mb-3 text-success">Defending Pokemon</strong>
+
+                                <div class="dropdown">
+                                    <label for="defence_poke_name">Choose Pokemon:</label>
+                                    <select class="form-control" id="defence_poke_name">
+
+                                    </select>
+                                </div>
+                                <br>
+
+                                <div class="dropdown">
+                                    <label for="defence_level">Level:</label>
+                                    <input type="text" class="form-control" placeholder="0" aria-label="defence_level" aria-describedby="basic-addon1" id="defence_level" value="0">
+                                </div>
+                                <br>
+
+                                <div class="dropdown">
+                                    <label for="defence_poke_item">Attached Item:</label>
+                                    <select class="form-control" id="defence_poke_item">
+                                        <option>None</option>
+                                        <option>Elemental Stone</option>
+                                        <option>Power Boost</option>
+                                    </select>
+                                </div>
+                                <br>
+
+                                <div class="dropdown">
+                                    <label for="defence_poke_type">Pokemon Type:</label> <br>
+                                    <input type="radio" id="normal" name="defence_poke_type" value="normal" checked="checked">
+                                    <label for="age1">Normal</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" id="shiny" name="defence_poke_type" value="shiny">
+                                    <label for="age2">Shiny</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" id="dark" name="defence_poke_type" value="dark">
+                                    <label for="age3">Dark</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" id="golden" name="defence_poke_type" value="golden">
+                                    <label for="age3">Golden</label>&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <hr style="height:23px; visibility:hidden;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-danger btn-lg btn-block"><b>Compute</b></button>
+      </div>
+    </div>
+    <div class="p-3 mb-3 bg-light rounded" id="result">
+        <h4 class="font">Result:</h4>
+        <p class="mb-0">aksdmnalksdnalsdnqlsakjdn</p>
+    </div>
+
+    <footer class="blog-footer">
+        <p>Static webpage built for <a href="https://tppcrpg.net">TPPC</a> by <a
+                href="https://forums.tppc.info/member.php?u=7361">@chrizandr</a>.</p>
+        <p>
+            <a href="https://github.com/chrizandr/tppc_damage">Source Code</a>
+        </p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>

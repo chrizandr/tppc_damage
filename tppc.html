@@ -1,87 +1,98 @@
-<html>
-<body>
-	<h2>Arceus level required</h2>
-	<p id="demo"></p>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="poke_data.json"></script>
+    <script type="text/javascript" src="move_data.json"></script>
+    <script type="text/javascript" src="weakness.json"></script>
+
+    <title>TPPC Damage Calculator</title>
+
+    <script>
+        function load() {
+            load_pokes_list();
+            load_moves_list();
+        }
+
+        function load_pokes_list() {
+            for (var key in pokelist) {
+                const poke = document.createElement('option');
+                poke.innerHTML = key;
+                document.querySelector('#poke_list').appendChild(poke);
+            }
+        }
+
+        function load_moves_list() {
+            for (var key in moves) {
+                const move = document.createElement('option');
+                move.innerHTML = key;
+                document.querySelector('#move_list').appendChild(move);
+            }
+        }
+    </script>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+<body onload="load()">
+    <h1>TPPC Damage Calculator</h1><br><br>
+    <div class="parent-container d-flex">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Attacking Pokemon details:</h3>
+                <div class="dropdown">
+                    <label for="sel1">Choose Pokemon:</label>
+                    </button>
+                    <select class="form-control" id="poke_list">
+
+                    </select>
+                </div>
+                <br>
+                <div class="dropdown">
+                    <label for="sel1">Attack Move:</label>
+                    </button>
+                    <select class="form-control" id="move_list">
+
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                Container Right
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
-
-<script>
-var night = false; // true/false.
-
-// defending pokémon
-var def = {};
-def.type = "Golden"; // Golden/Dark/Shiny/Normal.
-def.HP = 260; // HP stat without bonuses.
-def.defence = 15; // Defence stat without bonuses.
-def.speed = 60;
-def.level = 7500; // Defending pokémon's level.
-
-// attacking pokémon
-var att = {};
-att.type = "Normal"; // Golden/Dark/Shiny/Normal.
-att.attack = 120; // Attack stat without bonuses.
-att.speed = 120;
-att.movePower = 120; // Power of move.
-
-// multipliers
-var mods = {};
-mods.STAB = 1.5; // 1.5 or 0
-mods.weakness = 2; // 4,2,1,0.5,0.25
-mods.item = 0; // 1.5 Elemental Stone, 1.3 Life Orb, 0 No Attack Boosting Items.
-// ####################### //
-
-var types = {};
-types.Normal = 0;
-types.Shiny = 5;
-types.Dark = (night) ? 15 : -4;
-types.Golden = 15;
-
-var sum = 1;
-for (mod in mods) {
-	if (mods[mod] > 0) {
-		sum = sum * mods[mod];
-	}
-}
-mods = sum;
-var HP = Math.floor(((def.HP + types[def.type]) + 65) * def.level / 50 + 10);
-var defence = ((def.defence + types[def.type]) + 46.875)*def.level/50 + 5;
-
-// var reqLevel = Math.ceil((-(250+5*(myPokemon.attack+46.875))+Math.sqrt((250+5*(myPokemon.attack+4 6.875))*(250+5*(myPokemon.attack+46 .875))-(4*(myPokemon.attack+46.875)*-((((((((opPokemon.hp/mods)-2)*100/85*50)*opPokemon.defense)/movePower)*250)/2)-1250))))/(2*(myPokemon.attack+46.875)))
-
-for (var i = 0; true; i++) {
-		att.level = i;
-		var attack = ((att.attack + types[att.type]) + 46.875)*att.level/50 + 5;
-		var damageMin = (((2*att.level/5+2)*attack*att.movePower/defence)/50*85/100 + 2) * mods;
-
-		// damage has reached 100% of def pokémon's HP
-		if (Math.floor(damageMin) >= HP) {
-				var defSpeed = ((def.speed + types[def.type]) + 46.875)*def.level/50 + 5;
-				var attSpeed = ((att.speed + types[att.type]) + 46.875)*att.level/50 + 5;
-				var damageMax = (((2*att.level/5+2)*attack*att.movePower/defence)/50*100/100 + 2) * mods;
-				console.log(def.type + "Pokémon level", def.level);
-				console.log("| HP:", HP);
-				console.log("| Speed:", Math.floor(defSpeed));
-				console.log(att.type + "Pokémon level", i);
-				console.log("| Min.Damage:", Math.floor(damageMin), "(" + (((100 / HP) * damageMin)).toFixed(1) + "%"+ ")");
-				console.log("| Max.Damage:", Math.floor(damageMax), "(" + (((100 / HP) * damageMax)).toFixed(1) + "%" + ")");
-				console.log("| Speed:", Math.floor(attSpeed));
-
-				// att pokémon is slower, check lowest level it will be faster
-				if (attSpeed < defSpeed) {
-						for (i = i; true; i++) {
-								attLevel = i;
-								attSpeed = ((att.speed + types[att.type]) + 46.875)*attLevel/50 + 5;
-								if (attSpeed > defSpeed) {
-										console.log("Slower until level " + attLevel);
-										break;
-								}
-						}
-				}
-				break;
-		}
-}
-
-
-document.getElementById("demo").innerHTML = att.level;
-</script>
-
 </html>
