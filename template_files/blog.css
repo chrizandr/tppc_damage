@@ -130,3 +130,26 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+body {
+    background-color: #222;
+    color: white;
+}
+
+.flex-column {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+    -ms-flex-direction: column !important;
+    flex-direction: column !important;
+    background: #222;
+}
+.blog-footer {
+    padding: 2.5rem 0;
+    color: #999;
+    text-align: center;
+    background-color: #222;
+    border-top: 0.05rem solid #e5e5e5;
+}
+.bg-light {
+    background-color: #333333!important;;
+}
