@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <!-- saved from url=(0048)https://getbootstrap.com/docs/4.0/examples/blog/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- <link rel="stylesheet" href="dark-mode.css">
+    <script src="dark-mode-switch.min.js"></script> -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -19,9 +21,9 @@
     <link href="./template_files/blog.css" rel="stylesheet">
 
     <!-- Load data -->
-    <script type="text/javascript" src="poke_data.json"></script>
-    <script type="text/javascript" src="move_data.json"></script>
-    <script type="text/javascript" src="weakness.json"></script>
+    <script type="text/javascript" src="./data/poke_data.js"></script>
+    <script type="text/javascript" src="./data/move_data.js"></script>
+    <script type="text/javascript" src="./data/weakness.js"></script>
 
     <script>
         function load() {
@@ -30,12 +32,15 @@
         }
 
         function load_pokes_list() {
-            for (var key in pokelist) {
+            for (var key in tppc_dex) {
                 const poke1 = document.createElement('option');
                 poke1.innerHTML = key;
                 document.querySelector('#attack_poke_name').appendChild(poke1);
                 const poke2 = document.createElement('option');
                 poke2.innerHTML = key;
+                if(key == "Blissey"){
+                    poke2.selected = "selected"
+                }
                 document.querySelector('#defence_poke_name').appendChild(poke2);
             }
         }
@@ -46,6 +51,33 @@
                 move.innerHTML = key;
                 document.querySelector('#attack_poke_move').appendChild(move);
             }
+        }
+    </script>
+    <script>
+        function get_attacker_details() {
+                attack_poke = document.querySelector("#attack_poke_name").value;
+                attack_poke_item = document.querySelector("#attack_poke_item").value;
+                attack_poke_move = document.querySelector("#attack_poke_move").value;
+                attack_poke_type = document.querySelector('input[name="attack_poke_type"]:checked').value;
+                night = document.querySelector("#nighttime").checked;
+                return [attack_poke, attack_poke_item, attack_poke_move, attack_poke_type, night];
+        }
+
+        function get_defender_details() {
+                defence_poke = document.querySelector("#defence_poke_name").value;
+                defence_poke_item = document.querySelector("#defence_poke_item").value;
+                defence_poke_type = document.querySelector('input[name="defence_poke_type"]:checked').value;
+                defence_poke_level = document.querySelector("#defence_level").value;
+                return [defence_poke, defence_poke_item, defence_poke_level, defence_poke_type];
+        }
+
+        function compute() {
+            var [attack_poke, attack_poke_item, attack_poke_move, attack_poke_type, night] = get_attacker_details();
+            var [defence_poke, defence_poke_item, defence_poke_level, defence_poke_type] = get_defender_details();
+            console.log("Attacker details:", attack_poke, attack_poke_item,
+                attack_poke_move, attack_poke_type, night);
+            console.log("Defender details:", defence_poke, defence_poke_item,
+                defence_poke_level, defence_poke_type);
         }
     </script>
     <style>
@@ -63,7 +95,10 @@
   </head>
 
   <body onload="load()">
-
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="darkSwitch">
+        <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+    </div>
     <div class="container">
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
@@ -163,7 +198,6 @@
                                     <label for="defence_poke_item">Attached Item:</label>
                                     <select class="form-control" id="defence_poke_item">
                                         <option>None</option>
-                                        <option>Elemental Stone</option>
                                         <option>Power Boost</option>
                                     </select>
                                 </div>
@@ -187,7 +221,7 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-danger btn-lg btn-block"><b>Compute</b></button>
+        <button type="button" class="btn btn-danger btn-lg btn-block" onclick="compute()"><b>Compute</b></button>
       </div>
     </div>
     <div class="p-3 mb-3 bg-light rounded" id="result">

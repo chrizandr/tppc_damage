@@ -23,36 +23,35 @@ var attack_mon = {
 }
 
 
-function requriedLevel(night, attack_mon, defence_mon, attack_mon_item, defence_mon_item, otheritem) {
-  var night = false; // true/false.
-
+function calculate(night, attack_mon, defence_mon, attack_mon_item, defence_mon_item,
+                   attack_mon_type, defence_mon_type, defence_mon_level, attack_move) {
   // defending pokémon
   var def = {};
-  def.type = "Shiny"; // Golden/Dark/Shiny/Normal.
-  def.HP = 255; // HP stat without bonuses.
-  def.defence = 10; // Defence stat without bonuses.
-  def.speed = 55;
-  def.level = 5500; // Defending pokémon's level.
+  def.type = defence_mon_type; // Golden/Dark/Shiny/Normal.
+  def.HP = defence_mon[1]; // HP stat without bonuses.
+  def.defence = (attack_move.movetype == "special") ? defence_mon[5] : defence_mon[3]; // Defence stat without bonuses.
+  def.speed = defence_mon[6];
+  def.level = defence_mon_level; // Defending pokémon's level.
 
   // attacking pokémon
   var att = {};
-  att.type = "Normal"; // Golden/Dark/Shiny/Normal.
-  att.attack = 120; // Attack stat without bonuses.
-  att.speed = 120;
-  att.movePower = 120; // Power of move.
+  att.type = attack_mon_type;
+  att.attack = (attack_move.movetype == "special") ? attack_mon[4] : attack_mon[2];
+  att.speed = attack_mon[6]
+  att.movePower = attack_move.power
 
   // multipliers
   var mods = {};
-  mods.STAB = 1.5; // 1.5 or 0
+  mods.STAB = attack_move.type == attack_mon
   mods.weakness = 2; // 4,2,1,0.5,0.25
   mods.item = 0; // 1.5 Elemental Stone, 1.3 Life Orb, 0 No Attack Boosting Items.
-  // ####################### //
 
+  // ####################### //
   var types = {};
-  types.Normal = 0;
-  types.Shiny = 5;
-  types.Dark = (night) ? 15 : -4;
-  types.Golden = 15;
+  types.normal = 0;
+  types.shiny = 5;
+  types.dark = (night) ? 15 : -4;
+  types.golden = 15;
 
   var sum = 1;
   for (mod in mods) {
