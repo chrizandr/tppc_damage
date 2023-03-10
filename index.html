@@ -113,9 +113,9 @@
             else {
                 // add pokemon details
                 result_element.innerHTML = '<tr><td class="col-md-1"><b>' +
-                    type_names[attack_poke_type] + attack_poke + ' | Item: ' + attack_poke_item +
+                    type_names[attack_poke_type] + attack_poke + ' <br> Item: ' + attack_poke_item +
                     '</b></td><td class="col-md-1"><b>' +
-                    type_names[defence_poke_type] + defence_poke + ' (Level: '+ defence_poke_level +') | Item: '+ defence_poke_item +
+                    type_names[defence_poke_type] + defence_poke + ' (Level: '+ defence_poke_level +') <br> Item: '+ defence_poke_item +
                     '</b></td></tr>'
                 // output
                 result_element.innerHTML += '<tr><td class="col-md-1">' +
@@ -286,7 +286,7 @@
             <thead>
                 <tr>
                     <th scope="col" colspan="2">
-                        <h4><b>RESULT</b></h4>
+                        <h4><b style="color: #28a745;">RESULT</b></h4>
                     </th>
                 </tr>
             </thead>

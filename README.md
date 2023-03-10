@@ -1,11 +1,6 @@
 # tppc_damage
 
-## TODO:
-- [] Change scraper for TPPC Wiki instead of PokemonDB
-- [] Scrape and store move effectiveness matrix
-- [] Scrape and store moves list and power
-- [] Create UI for selecting pokes/moves/items
-
+Tool to calculate OHKO level and damage between two Pokemon on TPPC
 
 Posted by Piggachew
 Damage Formula:
