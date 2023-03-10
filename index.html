@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <!-- saved from url=(0048)https://getbootstrap.com/docs/4.0/examples/blog/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- <link rel="stylesheet" href="dark-mode.css">
     <script src="dark-mode-switch.min.js"></script> -->
 
@@ -24,6 +27,7 @@
     <script type="text/javascript" src="./data/poke_data.js"></script>
     <script type="text/javascript" src="./data/move_data.js"></script>
     <script type="text/javascript" src="./data/weakness.js"></script>
+    <script type="text/javascript" src="./damage.js"></script>
 
     <script>
         function load() {
@@ -38,7 +42,7 @@
                 document.querySelector('#attack_poke_name').appendChild(poke1);
                 const poke2 = document.createElement('option');
                 poke2.innerHTML = key;
-                if(key == "Blissey"){
+                if (key == "Blissey") {
                     poke2.selected = "selected"
                 }
                 document.querySelector('#defence_poke_name').appendChild(poke2);
@@ -55,29 +59,77 @@
     </script>
     <script>
         function get_attacker_details() {
-                attack_poke = document.querySelector("#attack_poke_name").value;
-                attack_poke_item = document.querySelector("#attack_poke_item").value;
-                attack_poke_move = document.querySelector("#attack_poke_move").value;
-                attack_poke_type = document.querySelector('input[name="attack_poke_type"]:checked').value;
-                night = document.querySelector("#nighttime").checked;
-                return [attack_poke, attack_poke_item, attack_poke_move, attack_poke_type, night];
+            attack_poke = document.querySelector("#attack_poke_name").value;
+            attack_poke_item = document.querySelector("#attack_poke_item").value;
+            attack_poke_move = document.querySelector("#attack_poke_move").value;
+            attack_poke_type = document.querySelector('input[name="attack_poke_type"]:checked').value;
+            night = document.querySelector("#nighttime").checked;
+            return [attack_poke, attack_poke_item, attack_poke_move, attack_poke_type, night];
         }
 
         function get_defender_details() {
-                defence_poke = document.querySelector("#defence_poke_name").value;
-                defence_poke_item = document.querySelector("#defence_poke_item").value;
-                defence_poke_type = document.querySelector('input[name="defence_poke_type"]:checked').value;
-                defence_poke_level = document.querySelector("#defence_level").value;
-                return [defence_poke, defence_poke_item, defence_poke_level, defence_poke_type];
+            defence_poke = document.querySelector("#defence_poke_name").value;
+            defence_poke_item = document.querySelector("#defence_poke_item").value;
+            defence_poke_type = document.querySelector('input[name="defence_poke_type"]:checked').value;
+            defence_poke_level = document.querySelector("#defence_level").value;
+            return [defence_poke, defence_poke_item, defence_poke_level, defence_poke_type];
         }
 
         function compute() {
             var [attack_poke, attack_poke_item, attack_poke_move, attack_poke_type, night] = get_attacker_details();
             var [defence_poke, defence_poke_item, defence_poke_level, defence_poke_type] = get_defender_details();
+
             console.log("Attacker details:", attack_poke, attack_poke_item,
                 attack_poke_move, attack_poke_type, night);
             console.log("Defender details:", defence_poke, defence_poke_item,
                 defence_poke_level, defence_poke_type);
+
+            var output = calculate(night, tppc_dex[attack_poke], tppc_dex[defence_poke],
+                attack_poke_item, defence_poke_item,
+                attack_poke_type, defence_poke_type,
+                defence_poke_level,
+                moves[attack_poke_move]);
+
+            display_output(output, attack_poke, defence_poke,
+                attack_poke_move, defence_poke_level,
+                attack_poke_type, defence_poke_type,
+                attack_poke_item, defence_poke_item);
+        }
+
+        function display_output(output, attack_poke, defence_poke,
+            attack_poke_move, defence_poke_level,
+            attack_poke_type, defence_poke_type,
+            attack_poke_item, defence_poke_item) {
+            var type_names = {};
+            type_names.normal = "";
+            type_names.shiny = "Shiny";
+            type_names.dark = "Dark";
+            type_names.golden = "Golden";
+
+            var result_element = document.getElementById("result");
+            if ("error" in output) {
+                result_element.innerHTML = '<tr><th scope="row"><b>Please select a damaging move</b></th></tr>';
+            }
+            else {
+                // add pokemon details
+                result_element.innerHTML = '<tr><td class="col-md-1"><b>' +
+                    type_names[attack_poke_type] + attack_poke + ' | Item: ' + attack_poke_item +
+                    '</b></td><td class="col-md-1"><b>' +
+                    type_names[defence_poke_type] + defence_poke + ' (Level: '+ defence_poke_level +') | Item: '+ defence_poke_item +
+                    '</b></td></tr>'
+                // output
+                result_element.innerHTML += '<tr><td class="col-md-1">' +
+                    'Move: <b>' + attack_poke_move + '</b> <br>' +
+                    '<span style="color:#FFC000;"> <b>Minimum required level for OHKO: ' + output.min_level + '</b></span><br>' +
+                    '<span style="color:#FFC000;"> <b>Level to outspeed defending Pokemon: ' + output.outspeed_level + '</b></span><br><br>' +
+                    'Minimum Damage using <b>' + attack_poke_move + '</b> at Level <b>' + output.min_level + '</b>: <b>' + output.min_damage + '</b> <br>' +
+                    'Maximum Damage using <b>' + attack_poke_move + '</b> at Level <b>' + output.min_level + '</b>: <b>' + output.max_damage + '</b> <br>' +
+                    '</td><td class="col-md-1">' +
+                    'HP: <b>' + output.def_hp + '</b><br>' +
+                    'Defence: <b>' + output.def_def + '</b><br>' +
+                    'Speed: <b>' + output.def_speed + '</b><br>' +
+                    '</td></tr>'
+                }
         }
     </script>
     <style>
@@ -86,143 +138,180 @@
             height: 20px;
             width: 20px;
             display: block;
-          /* Other styles here */
+            /* Other styles here */
         }
-        h4 {text-align: center;}
-        p {text-align: center;}
 
+        h4 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
     </style>
-  </head>
+</head>
 
-  <body onload="load()">
+<body onload="load()">
     <div class="container">
-      <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-          <div class="col text-center">
-            <span class='icon'></span>
-            <img src="./template_files/528101.png" class="rounded float-left" alt="..." width="42" height="42">
-            <img src="./template_files/528101.png" class="rounded float-right" alt="..." width="42" height="42">
-            <h1 class="blog-header-logo text-dark"><b>TPPC Damage Calculator</b></a>
-          </div>
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col text-center">
+                    <span class='icon'></span>
+                    <img src="./template_files/528101.png" class="rounded float-left" alt="..." width="42" height="42">
+                    <img src="./template_files/528101.png" class="rounded float-right" alt="..." width="42" height="42">
+                    <h1 class="blog-header-logo text-dark"><b>TPPC Damage Calculator</b></a>
+                </div>
+            </div>
+        </header>
+
+        <div class="nav-scroller py-1 mb-2">
         </div>
-      </header>
 
-      <div class="nav-scroller py-1 mb-2">
-      </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <strong class="d-inline-block mb-3 text-success">Attacking Pokemon</strong>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <div class="card flex-md-row mb-4 box-shadow">
-            <div class="card-body d-flex flex-column align-items-start">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <strong class="d-inline-block mb-3 text-success">Attacking Pokemon</strong>
+                                    <div class="dropdown">
+                                        <label for="attack_poke_name">Choose Pokemon:</label>
+                                        <select class="form-control" id="attack_poke_name">
 
-                            <div class="dropdown">
-                                <label for="attack_poke_name">Choose Pokemon:</label>
-                                <select class="form-control" id="attack_poke_name">
+                                        </select>
+                                    </div>
+                                    <br>
 
-                                </select>
-                            </div>
-                            <br>
+                                    <div class="dropdown">
+                                        <label for="attack_poke_move">Attack Move:</label>
+                                        <select class="form-control" id="attack_poke_move">
 
-                            <div class="dropdown">
-                                <label for="attack_poke_move">Attack Move:</label>
-                                <select class="form-control" id="attack_poke_move">
+                                        </select>
+                                    </div>
+                                    <br>
 
-                                </select>
-                            </div>
-                            <br>
+                                    <div class="dropdown">
+                                        <label for="attack_poke_item">Attached Item:</label>
+                                        <select class="form-control" id="attack_poke_item">
+                                            <option>None</option>
+                                            <option>Elemental Stone</option>
+                                            <option>Life Orb</option>
+                                            <option>Power Boost</option>
+                                        </select>
+                                    </div>
+                                    <br>
 
-                            <div class="dropdown">
-                                <label for="attack_poke_item">Attached Item:</label>
-                                <select class="form-control" id="attack_poke_item">
-                                    <option>None</option>
-                                    <option>Elemental Stone</option>
-                                    <option>Life Orb</option>
-                                    <option>Power Boost</option>
-                                </select>
-                            </div>
-                            <br>
-
-                            <div class="dropdown">
-                                <label for="attack_poke_type">Pokemon Type:</label> <br>
-                                <input type="radio" id="normal" name="attack_poke_type" value="normal" checked="checked">
-                                <label for="age1">Normal</label>&nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="shiny" name="attack_poke_type" value="shiny">
-                                <label for="age2">Shiny</label>&nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="dark" name="attack_poke_type" value="dark">
-                                <label for="age3">Dark</label>&nbsp;&nbsp;&nbsp;
-                                <input type="radio" id="golden" name="attack_poke_type" value="golden">
-                                <label for="age3">Golden</label>&nbsp;&nbsp;&nbsp;
-                            </div>
-                            <br>
-                            <div class="dropdown">
-                                <input type="checkbox" id="nighttime" name="nighttime" value="night">
-                                <label for="nighttime">TPPC Night Time</label>
+                                    <div class="dropdown">
+                                        <label for="attack_poke_type">Pokemon Type:</label> <br>
+                                        <input type="radio" id="normal" name="attack_poke_type" value="normal"
+                                            checked="checked">
+                                        <label for="age1">Normal</label>&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" id="shiny" name="attack_poke_type" value="shiny">
+                                        <label for="age2">Shiny</label>&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" id="dark" name="attack_poke_type" value="dark">
+                                        <label for="age3">Dark</label>&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" id="golden" name="attack_poke_type" value="golden">
+                                        <label for="age3">Golden</label>&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                    <br>
+                                    <div class="dropdown">
+                                        <input type="checkbox" id="nighttime" name="nighttime" value="night">
+                                        <label for="nighttime">TPPC Night Time</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card flex-md-row mb-4 box-shadow">
-                <div class="card-body d-flex flex-column align-items-start">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <strong class="d-inline-block mb-3 text-success">Defending Pokemon</strong>
+            <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <strong class="d-inline-block mb-3 text-success">Defending Pokemon</strong>
 
-                                <div class="dropdown">
-                                    <label for="defence_poke_name">Choose Pokemon:</label>
-                                    <select class="form-control" id="defence_poke_name">
+                                    <div class="dropdown">
+                                        <label for="defence_poke_name">Choose Pokemon:</label>
+                                        <select class="form-control" id="defence_poke_name">
 
-                                    </select>
+                                        </select>
+                                    </div>
+                                    <br>
+
+                                    <div class="dropdown">
+                                        <label for="defence_level">Level:</label>
+                                        <input type="text" class="form-control" placeholder="0"
+                                            aria-label="defence_level" aria-describedby="basic-addon1"
+                                            id="defence_level" value="100">
+                                    </div>
+                                    <br>
+
+                                    <div class="dropdown">
+                                        <label for="defence_poke_item">Attached Item:</label>
+                                        <select class="form-control" id="defence_poke_item">
+                                            <option>None</option>
+                                            <option>Power Boost</option>
+                                        </select>
+                                    </div>
+                                    <br>
+
+                                    <div class="dropdown">
+                                        <label for="defence_poke_type">Pokemon Type:</label> <br>
+                                        <input type="radio" id="normal" name="defence_poke_type" value="normal"
+                                            checked="checked">
+                                        <label for="age1">Normal</label>&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" id="shiny" name="defence_poke_type" value="shiny">
+                                        <label for="age2">Shiny</label>&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" id="dark" name="defence_poke_type" value="dark">
+                                        <label for="age3">Dark</label>&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" id="golden" name="defence_poke_type" value="golden">
+                                        <label for="age3">Golden</label>&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                    <hr style="height:23px; visibility:hidden;" />
                                 </div>
-                                <br>
-
-                                <div class="dropdown">
-                                    <label for="defence_level">Level:</label>
-                                    <input type="text" class="form-control" placeholder="0" aria-label="defence_level" aria-describedby="basic-addon1" id="defence_level" value="0">
-                                </div>
-                                <br>
-
-                                <div class="dropdown">
-                                    <label for="defence_poke_item">Attached Item:</label>
-                                    <select class="form-control" id="defence_poke_item">
-                                        <option>None</option>
-                                        <option>Power Boost</option>
-                                    </select>
-                                </div>
-                                <br>
-
-                                <div class="dropdown">
-                                    <label for="defence_poke_type">Pokemon Type:</label> <br>
-                                    <input type="radio" id="normal" name="defence_poke_type" value="normal" checked="checked">
-                                    <label for="age1">Normal</label>&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" id="shiny" name="defence_poke_type" value="shiny">
-                                    <label for="age2">Shiny</label>&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" id="dark" name="defence_poke_type" value="dark">
-                                    <label for="age3">Dark</label>&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" id="golden" name="defence_poke_type" value="golden">
-                                    <label for="age3">Golden</label>&nbsp;&nbsp;&nbsp;
-                                </div>
-                                <hr style="height:23px; visibility:hidden;" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <button type="button" class="btn btn-danger btn-lg btn-block" onclick="compute()"><b>Compute</b></button>
         </div>
-        <button type="button" class="btn btn-danger btn-lg btn-block" onclick="compute()"><b>Compute</b></button>
-      </div>
     </div>
-    <div class="p-3 mb-3 bg-light rounded" id="result">
-        <h4 class="font">Result:</h4>
-        <p class="mb-0">aksdmnalksdnalsdnqlsakjdn</p>
+    <div class="p-3 mb-3 bg-light rounded">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2">
+                        <h4><b>RESULT</b></h4>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="result">
+
+
+                <!-- <tr>
+                    <th scope="row"><b>Please select a damaging move</b></th>
+                </tr> -->
+            </tbody>
+        </table>
+        <table>
+            <th>
+
+            </th>
+        </table>
+        <!-- Defending Pokemon: Blissey (Level: 100)
+        Stats - | HP: 650 | Defence: 368.75 | Speed: 208.75 |
+
+        Attacking Pokemon: Abomasnow
+        Minimum required level for OHKO: 792
+        Minimum Damage using Absorb at Level 792: 650 (100.0%)
+        Maximum Damage using Absorb: 764 (117.6%)
+        Speed of Pokemon at OHKO level: 1697
+        Outspeeds defending Pokemon at level: 792 -->
     </div>
 
     <footer class="blog-footer">
@@ -236,12 +325,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
