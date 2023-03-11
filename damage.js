@@ -21,12 +21,13 @@ function item_mods(attack_poke_item) {
     return 1;
 }
 
-function modifiers(attack_poke_move, attack_poke_type, attack_poke_item, defence_poke) {
+function modifiers(attack_poke_move, attack_poke_type, attack_poke_item, defence_poke, extra_mod) {
     var mods = {};
     console.log("-------", attack_poke_type, attack_poke_move.type)
     mods.STAB =  attack_poke_type.split(" ").indexOf(attack_poke_move.type) >= 0 ? 1.5 : 1;
     mods.weakness = get_weakness(attack_poke_move, defence_poke); // 4,2,1,0.5,0.25
     mods.item = item_mods(attack_poke_item); // 1.5 Elemental Stone, 1.3 Life Orb, 0 No Attack Boosting Items.
+    mods.extra = extra_mod // In case of crit or other special conditions
     return mods;
 }
 
@@ -61,7 +62,7 @@ function def_poke_setup(defence_poke, defence_poke_type, defence_poke_level, def
 }
 
 function calculate(night, attack_poke, defence_poke, attack_poke_item, defence_poke_item,
-    attack_poke_type, defence_poke_type, defence_poke_level, attack_poke_move) {
+    attack_poke_type, defence_poke_type, defence_poke_level, attack_poke_move, extra_mod=1) {
     console.log("--------", attack_poke)
     var output = {};
     if (attack_poke_move.power == 0) {
@@ -77,7 +78,7 @@ function calculate(night, attack_poke, defence_poke, attack_poke_item, defence_p
         attack_poke_move);
     // multipliers
     const mods_list = modifiers(attack_poke_move, attack_poke[0],
-        attack_poke_item, defence_poke);
+        attack_poke_item, defence_poke, extra_mod);
 
     console.log(def);
     console.log(att);

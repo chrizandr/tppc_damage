@@ -90,6 +90,14 @@
                 defence_poke_level,
                 moves[attack_poke_move]);
 
+            var output_crit = calculate(night, tppc_dex[attack_poke], tppc_dex[defence_poke],
+                attack_poke_item, defence_poke_item,
+                attack_poke_type, defence_poke_type,
+                defence_poke_level,
+                moves[attack_poke_move], 1.5);
+
+            output.crit_level = output_crit.min_level
+
             display_output(output, attack_poke, defence_poke,
                 attack_poke_move, defence_poke_level,
                 attack_poke_type, defence_poke_type,
@@ -115,7 +123,7 @@
                 result_element.innerHTML = '<tr><td class="col-md-1"><b>' +
                     type_names[attack_poke_type] + attack_poke + ' <br> Item: ' + attack_poke_item +
                     '</b></td><td class="col-md-1"><b>' +
-                    type_names[defence_poke_type] + defence_poke + ' (Level: '+ defence_poke_level +') <br> Item: '+ defence_poke_item +
+                    type_names[defence_poke_type] + defence_poke + ' (Level: ' + defence_poke_level + ') <br> Item: ' + defence_poke_item +
                     '</b></td></tr>'
                 // output
                 result_element.innerHTML += '<tr><td class="col-md-1">' +
@@ -124,12 +132,13 @@
                     '<span style="color:#FFC000;"> <b>Outspeed defending Pokemon and OHKO level: ' + output.outspeed_level + '</b></span><br><br>' +
                     'Minimum Damage using <b>' + attack_poke_move + '</b> at Level <b>' + output.min_level + '</b>: <b>' + output.min_damage + '</b> <br>' +
                     'Maximum Damage using <b>' + attack_poke_move + '</b> at Level <b>' + output.min_level + '</b>: <b>' + output.max_damage + '</b> <br>' +
+                    'Minimum required level for OHKO with critical hit: <b>' + output.crit_level + '</b><br>' +
                     '</td><td class="col-md-1">' +
                     'HP: <b>' + output.def_hp + '</b><br>' +
                     'Defence: <b>' + output.def_def + '</b><br>' +
                     'Speed: <b>' + output.def_speed + '</b><br>' +
                     '</td></tr>'
-                }
+            }
         }
     </script>
     <style>
