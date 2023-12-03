@@ -1,92 +1,146 @@
 <!DOCTYPE html>
-<!--
-    Im using a secondary div container for my border
-    and adjusting padding accordingly. I did this
-    because one of the projects im working on uses
-    a css3 gradient instead of a regular border
-    you could use just a single content div within
-    the span6 and put your padding/border on that
-    element itsself.
--->
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>6x6 with borders & Padding</title>
-
-    <link rel="stylesheet" type="text/css"
-        href="https://raw.github.com/twitter/bootstrap/gh-pages/assets/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css"
-        href="https://raw.github.com/twitter/bootstrap/gh-pages/assets/css/bootstrap-responsive.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./template_files/528101.png">
+    <title>TPPC Damage Calculator</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">
+    <link href="./template_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./template_files/css" rel="stylesheet">
+    <link href="./template_files/blog.css" rel="stylesheet">
+    <script type="text/javascript" src="./data/poke_data.js"></script>
+    <script type="text/javascript" src="./data/move_data.js"></script>
+    <script type="text/javascript" src="./data/weakness.js"></script>
+    <script type="text/javascript" src="./damage.js"></script>
+    <!-- JavaScript functions here -->
     <style>
         body {
-            background: #333333;
+            background-color: black;
+            color: red;
         }
 
-        .page {
-            min-height: 1000px;
+        .container,
+        .card,
+        .blog-header,
+        .nav-scroller,
+        .blog-footer {
+            background-color: #1a1a1a;
+            color: red;
         }
 
-        .content {
-            background: red;
-            padding: 10px;
+        a,
+        a:hover {
+            color: red;
         }
 
-        header {
-            margin-bottom: 20px;
-            width: 100%;
-            min-height: 120px;
-            background: yellow;
+        .btn-danger {
+            background-color: red;
+            border-color: red;
         }
 
-        .widget {
-            margin-bottom: 20px;
-            padding: 6px;
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.75)), color-stop(60%, rgba(255, 255, 255, 0)));
+        .btn-danger:hover {
+            background-color: darkred;
+            border-color: darkred;
         }
 
-        footer {
-            background-color: white;
-            width: 100%;
-            min-height: 120px;
+        .form-control {
+            background-color: #333;
+            color: red;
+            border: 1px solid red;
+        }
+
+        .icon {
+            filter: hue-rotate(0deg) brightness(0.5);
+        }
+
+        .table {
+            border-color: red;
+        }
+
+        .table th,
+        .table td {
+            border-color: red;
+        }
+
+        .table thead th {
+            background-color: #550000;
+            color: white;
+        }
+
+        .table tbody tr:hover {
+            background-color: #550000;
+            color: white;
         }
     </style>
 </head>
 
-<body>
-    <header>
-
-    </header>
-    <div class="page">
-        <div class="container">
-            <div clas="span12">
-                <div class="widget">
-                    <div class="content">
-                        <h1>Test of Span 12</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="span6">
-                    <div class="widget">
-                        <div class="content">
-                            <h2>Left Span</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="span6">
-                    <div class="widget">
-                        <div class="content">
-                            <h2>Right Span</h2>
-                        </div>
-                    </div>
-                </div>
+<body onload="load()">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col text-center">
+                <span class='icon'></span>
+                <img src="./template_files/528101.png" class="rounded float-left" alt="..." width="42" height="42">
+                <img src="./template_files/528101.png" class="rounded float-right" alt="..." width="42" height="42">
+                <img src="./template_files/528101.png" class="rounded float-right" alt="..." width="42" height="42">
             </div>
         </div>
-    </div>
-    <footer>
+    </header>
 
+    <div class="nav-scroller py-1 mb-2">
+    </div>
+
+    <div class="container">
+        <!-- Attacking and Defending Pokemon Sections -->
+        <div class="row mb-3">
+            <!-- Attacking Pokemon Section -->
+            <div class="col-md-6">
+                <!-- Attacking Pokemon Details Here -->
+            </div>
+            <!-- Defending Pokemon Section -->
+            <div class="col-md-6">
+                <!-- Defending Pokemon Details Here -->
+            </div>
+            <button type="button" class="btn btn-danger btn-lg btn-block" onclick="compute()"><b>Compute</b></button>
+        </div>
+    </div>
+
+    <div class="p-3 mb-3 bg-light rounded">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2">
+                        <h4><b style="color: #28a745;">RESULT</b></h4>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="result">
+                <!-- Results will be displayed here -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer class="blog-footer">
+        <p>Static webpage built for <a href="https://tppcrpg.net">TPPC</a> by <a
+                href="https://forums.tppc.info/member.php?u=7361">@chrizandr</a>.</p>
+        <p>
+            <a href="https://github.com/chrizandr/tppc_damage">Source Code</a>
+        </p>
     </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
