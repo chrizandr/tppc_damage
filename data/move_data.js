@@ -647,7 +647,7 @@ moves={
     "Ice Ball": {
         "type": "Ice",
         "movetype": "physical",
-        "power": 30
+        "power": 150
     },
     "Ice Beam": {
         "type": "Ice",
