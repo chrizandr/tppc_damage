@@ -971,7 +971,7 @@ tppc_dex={
         25,
         15
     ],
-    "Castform (Normal)": [
+    "Castform": [
         "Normal ",
         70,
         70,
@@ -6146,7 +6146,16 @@ tppc_dex={
         25,
         40
     ],
-    "Shellos": [
+    "Shellos (East Sea)": [
+        "Water ",
+        76,
+        48,
+        48,
+        57,
+        62,
+        34
+    ],
+    "Shellos (West Sea)": [
         "Water ",
         76,
         48,
