@@ -2465,7 +2465,16 @@ tppc_dex={
         35,
         80
     ],
-    "Gastrodon": [
+    "Gastrodon (East Sea)": [
+        "Water Ground",
+        111,
+        83,
+        68,
+        92,
+        82,
+        39
+    ],
+    "Gastrodon (West Sea)": [
         "Water Ground",
         111,
         83,
