@@ -8,6 +8,15 @@ tppc_dex={
         85,
         60
     ],
+    "Abomasnow Mega Abomasnow": [
+        "Grass Ice",
+        90,
+        132,
+        105,
+        132,
+        105,
+        30
+    ],
     "Abra": [
         "Psychic ",
         25,
@@ -25,6 +34,15 @@ tppc_dex={
         75,
         60,
         75
+    ],
+    "Absol Mega Absol": [
+        "Dark ",
+        65,
+        150,
+        60,
+        115,
+        60,
+        115
     ],
     "Accelgor": [
         "Bug ",
@@ -62,6 +80,15 @@ tppc_dex={
         75,
         130
     ],
+    "Aerodactyl Mega Aerodactyl": [
+        "Rock Flying",
+        80,
+        135,
+        85,
+        70,
+        95,
+        150
+    ],
     "Aggron": [
         "Steel Rock",
         70,
@@ -69,6 +96,15 @@ tppc_dex={
         180,
         60,
         60,
+        50
+    ],
+    "Aggron Mega Aggron": [
+        "Steel ",
+        70,
+        140,
+        230,
+        60,
+        80,
         50
     ],
     "Aipom": [
@@ -89,6 +125,15 @@ tppc_dex={
         95,
         120
     ],
+    "Alakazam Mega Alakazam": [
+        "Psychic ",
+        55,
+        50,
+        65,
+        175,
+        105,
+        150
+    ],
     "Alomomola": [
         "Water ",
         165,
@@ -104,6 +149,15 @@ tppc_dex={
         70,
         90,
         70,
+        105,
+        80
+    ],
+    "Altaria Mega Altaria": [
+        "Dragon Fairy",
+        75,
+        110,
+        110,
+        110,
         105,
         80
     ],
@@ -142,6 +196,15 @@ tppc_dex={
         115,
         90,
         55
+    ],
+    "Ampharos Mega Ampharos": [
+        "Electric Dragon",
+        90,
+        95,
+        105,
+        165,
+        110,
+        45
     ],
     "Anorith": [
         "Rock Bug",
@@ -413,6 +476,15 @@ tppc_dex={
         86,
         50
     ],
+    "Audino Mega Audino": [
+        "Normal Fairy",
+        103,
+        60,
+        126,
+        80,
+        126,
+        50
+    ],
     "Aurorus": [
         "Rock Ice",
         123,
@@ -494,6 +566,15 @@ tppc_dex={
         63,
         65
     ],
+    "Banette Mega Banette": [
+        "Ghost ",
+        64,
+        165,
+        75,
+        93,
+        83,
+        75
+    ],
     "Barbaracle": [
         "Rock Water",
         72,
@@ -574,6 +655,15 @@ tppc_dex={
         45,
         80,
         75
+    ],
+    "Beedrill Mega Beedrill": [
+        "Bug Poison",
+        65,
+        150,
+        40,
+        15,
+        80,
+        145
     ],
     "Beheeyem": [
         "Psychic ",
@@ -683,6 +773,15 @@ tppc_dex={
         105,
         78
     ],
+    "Blastoise Mega Blastoise": [
+        "Water ",
+        79,
+        103,
+        120,
+        135,
+        115,
+        78
+    ],
     "Blaziken": [
         "Fire Fighting",
         80,
@@ -691,6 +790,15 @@ tppc_dex={
         110,
         70,
         80
+    ],
+    "Blaziken Mega Blaziken": [
+        "Fire Fighting",
+        80,
+        160,
+        80,
+        130,
+        80,
+        100
     ],
     "Blissey": [
         "Normal ",
@@ -926,6 +1034,15 @@ tppc_dex={
         75,
         40
     ],
+    "Camerupt Mega Camerupt": [
+        "Fire Ground",
+        70,
+        120,
+        100,
+        145,
+        105,
+        20
+    ],
     "Carbink": [
         "Rock Fairy",
         50,
@@ -1059,6 +1176,24 @@ tppc_dex={
         78,
         109,
         85,
+        100
+    ],
+    "Charizard Mega Charizard X": [
+        "Fire Dragon",
+        78,
+        130,
+        111,
+        130,
+        85,
+        100
+    ],
+    "Charizard Mega Charizard Y": [
+        "Fire Flying",
+        78,
+        104,
+        78,
+        159,
+        115,
         100
     ],
     "Charjabug": [
@@ -1690,6 +1825,15 @@ tppc_dex={
         100,
         150,
         50
+    ],
+    "Diancie Mega Diancie": [
+        "Rock Fairy",
+        50,
+        160,
+        110,
+        160,
+        110,
+        110
     ],
     "Diggersby": [
         "Normal Ground",
@@ -2420,6 +2564,15 @@ tppc_dex={
         115,
         80
     ],
+    "Gallade Mega Gallade": [
+        "Psychic Fighting",
+        68,
+        165,
+        95,
+        65,
+        115,
+        110
+    ],
     "Galvantula": [
         "Bug Electric",
         70,
@@ -2447,6 +2600,15 @@ tppc_dex={
         85,
         102
     ],
+    "Garchomp Mega Garchomp": [
+        "Dragon Ground",
+        108,
+        170,
+        115,
+        120,
+        95,
+        92
+    ],
     "Gardevoir": [
         "Psychic Fairy",
         68,
@@ -2455,6 +2617,15 @@ tppc_dex={
         125,
         115,
         80
+    ],
+    "Gardevoir Mega Gardevoir": [
+        "Psychic Fairy",
+        68,
+        85,
+        65,
+        165,
+        135,
+        100
     ],
     "Gastly": [
         "Ghost Poison",
@@ -2491,6 +2662,15 @@ tppc_dex={
         130,
         75,
         110
+    ],
+    "Gengar Mega Gengar": [
+        "Ghost Poison",
+        60,
+        65,
+        80,
+        170,
+        95,
+        130
     ],
     "Geodude": [
         "Rock Ground",
@@ -2572,6 +2752,15 @@ tppc_dex={
         80,
         80,
         80
+    ],
+    "Glalie Mega Glalie": [
+        "Ice ",
+        80,
+        120,
+        80,
+        120,
+        80,
+        100
     ],
     "Glameow": [
         "Normal ",
@@ -2933,6 +3122,15 @@ tppc_dex={
         100,
         81
     ],
+    "Gyarados Mega Gyarados": [
+        "Water Dark",
+        95,
+        155,
+        109,
+        70,
+        130,
+        81
+    ],
     "Hakamo-o": [
         "Dragon Fighting",
         55,
@@ -3031,6 +3229,15 @@ tppc_dex={
         40,
         95,
         85
+    ],
+    "Heracross Mega Heracross": [
+        "Bug Fighting",
+        80,
+        185,
+        115,
+        40,
+        105,
+        75
     ],
     "Herdier": [
         "Normal ",
@@ -3166,6 +3373,15 @@ tppc_dex={
         110,
         80,
         95
+    ],
+    "Houndoom Mega Houndoom": [
+        "Dark Fire",
+        75,
+        90,
+        90,
+        140,
+        90,
+        115
     ],
     "Houndour": [
         "Dark Fire",
@@ -3373,6 +3589,15 @@ tppc_dex={
         40,
         80,
         90
+    ],
+    "Kangaskhan Mega Kangaskhan": [
+        "Normal ",
+        105,
+        125,
+        100,
+        60,
+        100,
+        100
     ],
     "Karrablast": [
         "Bug ",
@@ -3653,6 +3878,15 @@ tppc_dex={
         130,
         110
     ],
+    "Latias Mega Latias": [
+        "Dragon Psychic",
+        80,
+        100,
+        120,
+        140,
+        150,
+        110
+    ],
     "Latios": [
         "Dragon Psychic",
         80,
@@ -3660,6 +3894,15 @@ tppc_dex={
         80,
         130,
         110,
+        110
+    ],
+    "Latios Mega Latios": [
+        "Dragon Psychic",
+        80,
+        130,
+        100,
+        160,
+        120,
         110
     ],
     "Leafeon": [
@@ -3806,6 +4049,15 @@ tppc_dex={
         96,
         105
     ],
+    "Lopunny Mega Lopunny": [
+        "Normal Fighting",
+        65,
+        136,
+        94,
+        54,
+        96,
+        135
+    ],
     "Lotad": [
         "Water Grass",
         40,
@@ -3832,6 +4084,15 @@ tppc_dex={
         115,
         70,
         90
+    ],
+    "Lucario Mega Lucario": [
+        "Fighting Steel",
+        70,
+        145,
+        88,
+        140,
+        70,
+        112
     ],
     "Ludicolo": [
         "Water Grass",
@@ -4103,6 +4364,15 @@ tppc_dex={
         60,
         105
     ],
+    "Manectric Mega Manectric": [
+        "Electric ",
+        70,
+        75,
+        80,
+        135,
+        80,
+        135
+    ],
     "Mankey": [
         "Fighting ",
         40,
@@ -4220,6 +4490,15 @@ tppc_dex={
         55,
         50
     ],
+    "Mawile Mega Mawile": [
+        "Steel Fairy",
+        50,
+        105,
+        125,
+        55,
+        95,
+        50
+    ],
     "Medicham": [
         "Fighting Psychic",
         60,
@@ -4228,6 +4507,15 @@ tppc_dex={
         60,
         75,
         80
+    ],
+    "Medicham Mega Medicham": [
+        "Fighting Psychic",
+        60,
+        100,
+        85,
+        80,
+        85,
+        100
     ],
     "Meditite": [
         "Fighting Psychic",
@@ -4328,6 +4616,15 @@ tppc_dex={
         90,
         70
     ],
+    "Metagross Mega Metagross": [
+        "Steel Psychic",
+        80,
+        145,
+        150,
+        105,
+        110,
+        110
+    ],
     "Metang": [
         "Steel Psychic",
         60,
@@ -4363,6 +4660,24 @@ tppc_dex={
         154,
         90,
         130
+    ],
+    "Mewtwo Mega Mewtwo X": [
+        "Psychic Fighting",
+        106,
+        190,
+        100,
+        154,
+        100,
+        130
+    ],
+    "Mewtwo Mega Mewtwo Y": [
+        "Psychic ",
+        106,
+        150,
+        70,
+        194,
+        120,
+        140
     ],
     "Mienfoo": [
         "Fighting ",
@@ -5129,6 +5444,15 @@ tppc_dex={
         70,
         101
     ],
+    "Pidgeot Mega Pidgeot": [
+        "Normal Flying",
+        83,
+        80,
+        80,
+        135,
+        80,
+        121
+    ],
     "Pidgeotto": [
         "Normal Flying",
         63,
@@ -5209,6 +5533,15 @@ tppc_dex={
         55,
         70,
         85
+    ],
+    "Pinsir Mega Pinsir": [
+        "Bug Flying",
+        65,
+        155,
+        120,
+        65,
+        90,
+        105
     ],
     "Piplup": [
         "Water ",
@@ -5588,6 +5921,15 @@ tppc_dex={
         90,
         95
     ],
+    "Rayquaza Mega Rayquaza": [
+        "Dragon Flying",
+        105,
+        180,
+        100,
+        180,
+        100,
+        115
+    ],
     "Regice": [
         "Ice ",
         80,
@@ -5822,6 +6164,15 @@ tppc_dex={
         65,
         50
     ],
+    "Sableye Mega Sableye": [
+        "Dark Ghost",
+        50,
+        85,
+        125,
+        85,
+        115,
+        20
+    ],
     "Salamence": [
         "Dragon Flying",
         95,
@@ -5830,6 +6181,15 @@ tppc_dex={
         110,
         80,
         100
+    ],
+    "Salamence Mega Salamence": [
+        "Dragon Flying",
+        95,
+        145,
+        130,
+        120,
+        90,
+        120
     ],
     "Salandit": [
         "Poison Fire",
@@ -5948,6 +6308,15 @@ tppc_dex={
         85,
         120
     ],
+    "Sceptile Mega Sceptile": [
+        "Grass Dragon",
+        70,
+        110,
+        75,
+        145,
+        85,
+        145
+    ],
     "Scizor": [
         "Bug Steel",
         70,
@@ -5956,6 +6325,15 @@ tppc_dex={
         55,
         80,
         65
+    ],
+    "Scizor Mega Scizor": [
+        "Bug Steel",
+        70,
+        150,
+        140,
+        65,
+        100,
+        75
     ],
     "Scolipede": [
         "Bug Poison",
@@ -6100,6 +6478,15 @@ tppc_dex={
         95,
         40,
         95
+    ],
+    "Sharpedo Mega Sharpedo": [
+        "Water Dark",
+        70,
+        140,
+        70,
+        110,
+        65,
+        105
     ],
     "Shaymin (Land)": [
         "Grass ",
@@ -6533,6 +6920,15 @@ tppc_dex={
         80,
         30
     ],
+    "Slowbro Mega Slowbro": [
+        "Water Psychic",
+        95,
+        75,
+        180,
+        130,
+        80,
+        30
+    ],
     "Slowking": [
         "Water Psychic",
         95,
@@ -6821,6 +7217,15 @@ tppc_dex={
         65,
         30
     ],
+    "Steelix Mega Steelix": [
+        "Steel Ground",
+        75,
+        125,
+        230,
+        55,
+        95,
+        30
+    ],
     "Steenee": [
         "Grass ",
         52,
@@ -6946,6 +7351,15 @@ tppc_dex={
         85,
         90,
         60
+    ],
+    "Swampert Mega Swampert": [
+        "Water Ground",
+        100,
+        150,
+        110,
+        95,
+        110,
+        70
     ],
     "Swanna": [
         "Water Flying",
@@ -7415,6 +7829,15 @@ tppc_dex={
         100,
         61
     ],
+    "Tyranitar Mega Tyranitar": [
+        "Rock Dark",
+        100,
+        164,
+        150,
+        95,
+        120,
+        71
+    ],
     "Tyrantrum": [
         "Rock Dragon",
         82,
@@ -7557,6 +7980,15 @@ tppc_dex={
         83,
         100,
         100,
+        80
+    ],
+    "Venusaur Mega Venusaur": [
+        "Grass Poison",
+        80,
+        100,
+        123,
+        122,
+        120,
         80
     ],
     "Vespiquen": [

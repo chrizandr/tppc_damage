@@ -26,6 +26,10 @@ def filter_tppc_pokes():
             unkown_list.append(poke)
         else:
             tppc_poke_data[poke] = all_poke_data[poke]
+    # Include megas
+    for id_ in all_poke_data:
+        if "Mega" in id_:
+            tppc_poke_data[id_] = all_poke_data[id_]
 
     json.dump(tppc_poke_data, open("tppc_poke_data.json", "w"), indent=4)
     json.dump(unkown_list, open("unknown_pokes.json", "w"), indent=4)
@@ -45,12 +49,16 @@ def filter_tppc_moves():
     json.dump(tppc_move_data, open("tppc_move_data.json", "w"), indent=4)
     json.dump(unkown_list, open("unknown_moves.json", "w"), indent=4)
 
-    pdb.set_trace()
 
 if __name__ == "__main__":
     # filter_tppc_pokes()
     # filter_tppc_moves()
-    data_dict = json.load(open("tppc_poke_data.json"))
-    var = "tppc_dex"
-    js_file = "poke_data.js"
+    # data_dict = json.load(open("tppc_poke_data.json"))
+    # var = "tppc_dex"
+    # js_file = "poke_data.js"
+    # dump_to_js(data_dict, var, js_file, sort_keys=True)
+
+    data_dict = json.load(open("tppc_move_data.json"))
+    var = "moves"
+    js_file = "move_data.js"
     dump_to_js(data_dict, var, js_file, sort_keys=True)

@@ -989,6 +989,11 @@ moves={
         "movetype": "special",
         "power": 90
     },
+    "Psychic Fangs": {
+        "type": "Psychic",
+        "movetype": "physical",
+        "power": 85
+    },
     "Psycho Boost": {
         "type": "Psychic",
         "movetype": "special",
@@ -1288,6 +1293,11 @@ moves={
         "type": "Rock",
         "movetype": "physical",
         "power": 100
+    },
+    "Strange Steam": {
+        "type": "Fairy",
+        "movetype": "special",
+        "power": 90
     },
     "Strength": {
         "type": "Normal",
